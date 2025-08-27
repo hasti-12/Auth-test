@@ -35,7 +35,7 @@ export default function LoginPage() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors , isValid },
   } = useForm<TLoginFormData>({
     resolver: zodResolver(loginSchema),
     mode:"onChange",
@@ -110,7 +110,7 @@ export default function LoginPage() {
                 type="submit"
                 className="w-full"
                 loading={loginMutation.isPending}
-                disabled={loginMutation.isPending }
+                disabled={loginMutation.isPending || !isValid  }
               >
                 {loginMutation.isPending ? "Logging in..." : "Login"}
               </Button>
